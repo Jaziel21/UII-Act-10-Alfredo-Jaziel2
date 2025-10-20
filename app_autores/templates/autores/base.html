@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Backend Librería{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'listar_autores' %}">Librería de Autores</a>
+            <ul>
+                <li><a href="{% url 'listar_autores' %}">Listar Autores</a></li>
+                <li><a href="{% url 'agregar_autor' %}">Agregar Autor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; Alfredo Martinez 1194</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'autores/base.html' %}
+
+{% block title %}Listado de Autores{% endblock %}
+
+{% block content %}
+    <h1>Listado de Autores</h1>
+    <a href="{% url 'agregar_autor' %}" class="btn btn-primary">Agregar Nuevo Autor</a>
+
+    {% if autores %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Nacionalidad</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in autores %}
+                <tr>
+                    <td><a href="{% url 'ver_autor' autor.id %}">{{ autor.nombre }} {{ autor.apellido }}</a></td>
+                    <td>{{ autor.nacionalidad }}</td>
+                    <td>{{ autor.fecha_nacimiento|date:"d M Y" }}</td>
+                    <td>
+                        <a href="{% url 'editar_autor' autor.id %}" class="btn btn-warning">Editar</a>
+                        <a href="{% url 'eliminar_autor' autor.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay autores registrados.</p>
+    {% endif %}
+{% endblock %}

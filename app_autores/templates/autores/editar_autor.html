@@ -1,0 +1,20 @@
+{% extends 'autores/base.html' %}
+
+{% block title %}Editar Autor: {{ autor.nombre }} {{ autor.apellido }}{% endblock %}
+
+{% block content %}
+    <h1>Editar Autor: {{ autor.nombre }} {{ autor.apellido }}</h1>
+
+    {% if mensaje %}
+        <div class="mensaje-exito">
+            {{ mensaje }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Actualizar Autor</button>
+        <a href="{% url 'ver_autor' autor.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

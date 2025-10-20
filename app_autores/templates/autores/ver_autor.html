@@ -1,0 +1,24 @@
+{% extends 'autores/base.html' %}
+
+{% block title %}Detalle del Autor: {{ autor.nombre }} {{ autor.apellido }}{% endblock %}
+
+{% block content %}
+    <h1>Detalle del Autor: {{ autor.nombre }} {{ autor.apellido }}</h1>
+
+    <div class="autor-detail">
+        <p><strong>Nacionalidad:</strong> {{ autor.nacionalidad }}</p>
+        <p><strong>Fecha de Nacimiento:</strong> {{ autor.fecha_nacimiento|date:"d M Y" }}</p>
+        {% if autor.bibliografia %}
+            <p><strong>Biografía:</strong> {{ autor.bibliografia|linebreaksbr }}</p>
+        {% endif %}
+        {% if autor.pagina_web %}
+            <p><strong>Página Web:</strong> <a href="{{ autor.pagina_web }}" target="_blank">{{ autor.pagina_web }}</a></p>
+        {% endif %}
+    </div>
+
+    <div class="acciones">
+        <a href="{% url 'editar_autor' autor.id %}" class="btn btn-warning">Editar Autor</a>
+        <a href="{% url 'eliminar_autor' autor.id %}" class="btn btn-danger">Eliminar Autor</a>
+        <a href="{% url 'listar_autores' %}" class="btn btn-secondary">Volver al Listado</a>
+    </div>
+{% endblock %}
